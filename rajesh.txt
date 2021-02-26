@@ -1,1 +1,0 @@
-Major project on Object Sorting Machine Based On Color and Size using Image Processing
