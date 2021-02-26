@@ -4,7 +4,7 @@ GPIO.setmode(GPIO.BCM)
 #setting up enable, In1A, In2A pin
 Ena = 15
 In1A = 16
-in2A = 17
+In2A = 17
 
 #defining pin 
 GPIO.setup(Ena, GPIO.OUT)
