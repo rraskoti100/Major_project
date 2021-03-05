@@ -13,6 +13,12 @@ class DcMotor:
     dc_pwm = GPIO.PWM(Ena, 100) # 100 is frequency
     
   def forward():
+    pwm.ChangeDutyCycle(20)
+    GPIO.output(Ena, True)
+
+  def stop():
+     pwm.stop()
+     GPIO.output(Ena, False)
     
 
     
