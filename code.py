@@ -5,7 +5,7 @@ cap = cv2.VideoCapture(0)
 
 while True:
     ret, frame = cap.read()
-    cv2.imshow("frame", frame)
+    #cv2.imshow("frame", frame)
 
     img_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
@@ -51,20 +51,17 @@ while True:
     print("Green : ", green)
     time.sleep(1)
 
-    if red >= 100 & red <= 985:
+    if red >= 250 and green <= 5 and blue <= 5:
         print("RED color")
         time.sleep(1)
-    elif green >= 40 & green <= 930:
+    if red <= 5 and green >= 250 and blue <= 5:
         print("GREEN  color")
-        time.sleep(1)
-    elif blue >= 60 & blue <= 990:
-        print("BLUE color")
         time.sleep(1)
     else:
         print("Color not detected.")
         time.sleep(1)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) == 27:
         break
 
 cv2.destroyAllWindows()

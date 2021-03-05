@@ -3,16 +3,36 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-
-#Setting up echo and trigger pin
 TRIG = 3
 ECHO = 4
 maxtime = 0.04
 
-#defining pin as input and output
+Ena = 17
+In1A = 27
+In2A = 22
+
+#defining pin 
+GPIO.setup(Ena, GPIO.OUT)
+GPIO.setup(In1A, GPIO.OUT)
+GPIO.setup(In2A, GPIO.OUT)
+
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 
+GPIO.output(In1A, False)
+GPIO.output(In2A, True)
+
+pwm = GPIO.PWM(Ena, 100)
+
+pwm.start(0)
+
+def forward():
+    pwm.ChangeDutyCycle(20)
+    GPIO.output(Ena, True)
+
+def stop():
+    pwm.stop()
+    GPIO.output(Ena, False)
 
 def distance():
     GPIO.output(TRIG, False)
@@ -36,6 +56,11 @@ def distance():
     return dist
 
 while True:
+    forward()
     d = distance()
     print("dist: ", d)
+    if d == 13:
+        stop()
+        time.sleep(1)
+    
     
