@@ -7,18 +7,21 @@ class DcMotor:
     self.Ena = Ena
     self.In1A = In1A
     self.In2A = In2A
-    GPIO.setup(Ena, GPIO.OUT)
-    GPIO.setup(In1A, GPIO.OUT)
-    GPIO.setup(In2A, GPIO.OUT)
-    dc_pwm = GPIO.PWM(Ena, 100) # 100 is frequency
+    GPIO.setup(self.Ena, GPIO.OUT)
+    GPIO.setup(self.In1A, GPIO.OUT)
+    GPIO.setup(self.In2A, GPIO.OUT)
+    dc_pwm = GPIO.PWM(self.Ena, 100) # 100 is frequency
+    GPIO.output(self.In1A, False)
+    GPIO.output(self.In2A, True)
+    dc_pwm.start(0)
     
   def forward():
-    pwm.ChangeDutyCycle(20)
-    GPIO.output(Ena, True)
+   dc_pwm.ChangeDutyCycle(20)
+    GPIO.output(self.Ena, True)
 
   def stop():
-     pwm.stop()
-     GPIO.output(Ena, False)
+     dc_pwm.stop()
+     GPIO.output(self.Ena, False)
     
 
     
